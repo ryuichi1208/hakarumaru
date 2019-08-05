@@ -48,7 +48,7 @@ def dispatch_response(msg):
     }
     cmd = msg.split()
     if cmd[0] == "h":
-        return status[cmd[1]]
+        return status[int(cmd[1])]
     else:
         return msg
 
