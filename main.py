@@ -38,13 +38,21 @@ def callback():
 
     return 'OK'
 
+def gen_http_status(msg):
+    try:
+        status = int(msg)
+        if status = 200:
+            return "OK"
+    except ValueError:
+        return msg
+
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    msg = event.message.text + "100"
+    msg = event.message.text
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=msg))
+        TextSendMessage(gen_http_status(msg)))
 
 
 if __name__ == "__main__":
