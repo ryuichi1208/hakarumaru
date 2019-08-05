@@ -32,7 +32,6 @@ def callback():
 
     try:
         handler.handle(body, signature)
-        line_bot_api.reply_message(reply_token, TextSendMessage(text='Hello World!'))
     except InvalidSignatureError:
         abort(400)
 
@@ -42,15 +41,37 @@ def callback():
 
 def dispatch_response(msg):
     status = {
+        100: "Continue",
+        101: "Switching Protocol",
+        103: "Early Hints",
         200: "OK",
+        203: "Non-Authoritative Information",
+        300: "Multiple Choice",
+        305: "Use Proxy",
         403: "Forbidden",
-        404: "Not fount"
+        404: "Not found",
+        406: "Not Acceptable",
+        407: "Proxy Authentication Required",
+        408: "Request Timeout",
+        409: "Conflict",
+        414: "URI Too Long",
+        451: "Unavailable For Legal Reasons",
+        500: "Internal Server Error",
+        503: "Service Unavailable",
+        510: "Not Extended",
+        511: "Network Authentication Required"
     }
+
     cmd = msg.split()
-    if cmd[0] == "h":
-        return status[int(cmd[1])]
+    if cmd[0] in ["h", "http"]:
+        try:
+            res = status[int(cmd[1])]
+        except KeyError:
+            res = "Undefined"
     else:
-        return msg
+        res = msg
+
+    return res
 
 
 @handler.add(MessageEvent, message=TextMessage)
