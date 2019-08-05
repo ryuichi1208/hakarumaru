@@ -13,8 +13,8 @@ import os
 
 app = Flask(__name__)
 
-YOUR_CHANNEL_SECRET = "7d8a1d28358c5363864ccd0fe709f9e7"
-YOUR_CHANNEL_ACCESS_TOKEN = "MEspC++mz0TZAMQhNsh4Xvz0R2XOZCKTvXMDZ0eH3igQ1ozbh08OgSPvIKJhchzfisSyyc0QKCbYEx2gN50TLf+ordWojC+XT4gZyyXSWVz9fJK/6PEYUtoYhAQHRX3MCAhAwxGLWHdTCpHlKTm+uwdB04t89/1O/w1cDnyilFU="
+YOUR_CHANNEL_SECRET = ""
+YOUR_CHANNEL_ACCESS_TOKEN = ""
 
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
@@ -47,17 +47,17 @@ def dispatch_response(msg):
         200: "OK",
         203: "Non-Authoritative Information",
         300: "Multiple Choice",
-        305: "Use Proxy",
+        305: "Use Proxy : プロキシを使用せよ。",
         403: "Forbidden",
         404: "Not found",
         406: "Not Acceptable",
         407: "Proxy Authentication Required",
         408: "Request Timeout",
-        409: "Conflict",
+        409: "Conflict : 競合。要求は現在のリソースと競合するので完了出来ない。",
         414: "URI Too Long",
         451: "Unavailable For Legal Reasons",
-        500: "Internal Server Error",
-        503: "Service Unavailable",
+        500: "Internal Server Error : サーバ内部エラー",
+        503: "Service Unavailable : サービス利用不可",
         510: "Not Extended",
         511: "Network Authentication Required"
     }
@@ -67,7 +67,7 @@ def dispatch_response(msg):
         try:
             res = status[int(cmd[1])]
         except KeyError:
-            res = "Undefined"
+            res = "The specified status is undefined"
     else:
         res = msg
 
