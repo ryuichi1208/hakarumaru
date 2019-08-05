@@ -38,21 +38,27 @@ def callback():
 
     return 'OK'
 
-def gen_http_status(msg):
-    try:
-        status = int(msg)
-        if status == 200:
-            return "OK"
-    except ValueError:
+
+
+def dispatch_response(msg):
+    status = {
+        200: "OK",
+        403: "Forbidden",
+        404: "Not fount"
+    }
+    cmd = msg.split()
+    if cmd[0] == "h":
+        return status[cmd[1]]
+    else:
         return msg
 
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    msg = event.message.text
+    event.message.text
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(gen_http_status(msg)))
+        TextSendMessage(gen_http_status(event.message.text)))
 
 
 if __name__ == "__main__":
