@@ -58,7 +58,7 @@ def handle_message(event):
     event.message.text
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(gen_http_status(event.message.text)))
+        TextSendMessage(dispatch_response(event.message.text)))
 
 
 if __name__ == "__main__":
