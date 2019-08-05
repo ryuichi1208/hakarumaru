@@ -41,7 +41,7 @@ def callback():
 def gen_http_status(msg):
     try:
         status = int(msg)
-        if status = 200:
+        if status == 200:
             return "OK"
     except ValueError:
         return msg
