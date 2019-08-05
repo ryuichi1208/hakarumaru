@@ -28,11 +28,11 @@ def callback():
     signature = request.headers['X-Line-Signature']
 
     body = request.get_data(as_text=True)
-    print(body)
     app.logger.info("Request body: " + body)
 
     try:
         handler.handle(body, signature)
+        line_bot_api.reply_message(reply_token, TextSendMessage(text='Hello World!'))
     except InvalidSignatureError:
         abort(400)
 
