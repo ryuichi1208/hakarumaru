@@ -99,11 +99,17 @@ def dispatch_response(msg):
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    event.message.text
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(dispatch_response(event.message.text)))
+        TextSendMessage(dispatch_response(event.message.text))
+    )
 
+@handler.add(MessageEvent, message=(ImageMessage, AudioMessage))
+def handle_image_audio_message(event):
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text="image")
+    )
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
