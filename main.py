@@ -62,12 +62,35 @@ def dispatch_response(msg):
         511: "Network Authentication Required"
     }
 
+    errno = {
+        1: "EPERM: Operation not permitted",
+        2: "ENOENT: No such file or directory",
+        5: "EIO: I/O error",
+        110: "ETIMEDOUT: Connection timed out",
+        114: "EALREADY: Operation already in progress"
+    }
+
+    signal = {
+        2: "SIGINT: Term キーボードからの割り込み",
+        11: "SIGSEGV: Core 不正なメモリー参照"
+    }
+
     cmd = msg.split()
     if cmd[0] in ["h", "http"]:
         try:
             res = status[int(cmd[1])]
         except KeyError:
             res = "The specified status is undefined"
+    if cmd[0] in ["e", "errno"]:
+        try:
+            res = errno[int(cmd[1])]
+        except KeyError:
+            res = "The specified errno is undefined"
+    if cmd[0] in ["s", "signal"]:
+        try:
+            res = signal[int(cmd[1])]
+        except KeyError:
+            res = "The specified signal is undefined"
     else:
         res = msg
 
