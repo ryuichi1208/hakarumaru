@@ -1,31 +1,29 @@
-from flask import Flask, request, abort
-
-from linebot import (
-    LineBotApi, WebhookHandler
-)
-from linebot.exceptions import (
-    InvalidSignatureError
-)
-from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, ImageMessage, AudioMessage
-)
 import os
+import json
+
+from flask import Flask, request, abort
+from linebot import LineBotApi, WebhookHandler
+from linebot.exceptions import InvalidSignatureError
+from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageMessage, AudioMessage
 
 app = Flask(__name__)
 
+user_id = "Ueb00df84c77cf0167b07fe0682eb709c"
 YOUR_CHANNEL_SECRET = "610989f0eb3dd983010087a2bbc4b7ea"
 YOUR_CHANNEL_ACCESS_TOKEN = "YNvQUWGAzSTIIMzyPgkBIaktnNZQgR4YkvUBZGFQIjWcSAFu8acgj94ePqeJGCN1isSyyc0QKCbYEx2gN50TLf+ordWojC+XT4gZyyXSWVxoObh9WSiioLbpgg6JWyxyLYgJXXQ8rEXacb3hpOXW0AdB04t89/1O/w1cDnyilFU="
 
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
-@app.route("/", methods=['GET'])
+@app.route("/cpu", methods=['POST'])
 def return_ok():
-    user_id = "ryuicchiww"
-    messages = TextSendMessage(text="cpu 使用率")
+    data = request.data.decode('utf-8')
+    data = json.loads(data)
+    img_url = str(data['key'])
+    messages = TextSendMessage(text=img_url)
     line_bot_api.push_message(user_id, messages=messages)
-
     return 'OK'
+
 
 @app.route("/callback", methods=['POST'])
 def callback():
