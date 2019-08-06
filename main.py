@@ -15,10 +15,25 @@ YOUR_CHANNEL_ACCESS_TOKEN = "YNvQUWGAzSTIIMzyPgkBIaktnNZQgR4YkvUBZGFQIjWcSAFu8ac
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
+def is_authorize(user, password):
+    if user in ["root", "metric"] and password is "password":
+        return True
+    else:
+        return False
+
 @app.route("/cpu", methods=['POST'])
 def return_ok():
     data = request.data.decode('utf-8')
     data = json.loads(data)
+
+    try:
+        if is_authorize(str(data["user"]), str(data["pass"])) == 0:
+            pass
+        else:
+            return "NG"
+    except KeyError:
+        return "NG"
+
     img_url = str(data['key'])
     messages = TextSendMessage(text=img_url)
     line_bot_api.push_message(user_id, messages=messages)
