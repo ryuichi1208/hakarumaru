@@ -81,12 +81,12 @@ def dispatch_response(msg):
             res = status[int(cmd[1])]
         except KeyError:
             res = "The specified status is undefined"
-    if cmd[0] in ["e", "errno"]:
+    elif cmd[0] in ["e", "errno"]:
         try:
             res = errno[int(cmd[1])]
         except KeyError:
             res = "The specified errno is undefined"
-    if cmd[0] in ["s", "signal"]:
+    elif cmd[0] in ["s", "signal"]:
         try:
             res = signal[int(cmd[1])]
         except KeyError:
