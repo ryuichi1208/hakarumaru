@@ -19,8 +19,12 @@ YOUR_CHANNEL_ACCESS_TOKEN = "YNvQUWGAzSTIIMzyPgkBIaktnNZQgR4YkvUBZGFQIjWcSAFu8ac
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
-@app.route("/")
+@app.route("/", methods=['GET'])
 def return_ok():
+    user_id = "ryuicchiww"
+    messages = TextSendMessage(text="cpu 使用率")
+    line_bot_api.push_message(user_id, messages=messages)
+
     return 'OK'
 
 @app.route("/callback", methods=['POST'])
