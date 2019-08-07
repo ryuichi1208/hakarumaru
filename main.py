@@ -21,6 +21,19 @@ def is_authorize(user, password):
     else:
         return False
 
+
+@app.route("/update", methods=['POST'])
+def update_host_info():
+    data = request.data.decode('utf-8')
+    data = json.loads(data)
+
+    with open("./text") as f:
+        f.write("hostname")
+
+    with open("./text") as f:
+        return f.read()
+
+
 @app.route("/cpu", methods=['POST'])
 def return_ok():
     data = request.data.decode('utf-8')
