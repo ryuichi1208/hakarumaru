@@ -77,14 +77,14 @@ def callback():
     return 'OK'
 
 
-def get_host_info():
-    filepath = "mbp01.txt"
+def get_host_info(host):
+    filepath = f'{host}.txt'
 
     with open(filepath) as f:
         js = json.load(f)
         js = json.loads(js)
 
-    return f'ホスト名：{js["hostname"]}\nkernel : {js["kernel"]}'
+    return f'ホスト名：{js["hostname"]}\nkernel : {js["kernel"]}\nmem: {js["mem"]}'
 
 def dispatch_response(msg):
     status = {
@@ -139,7 +139,7 @@ def dispatch_response(msg):
         except KeyError:
             res = "The specified signal is undefined"
     elif cmd[0] in ["の情報"]:
-        res = get_host_info()
+        res = get_host_info(cmd[0:cmd[0].find("の")])
     else:
         res = msg
 
