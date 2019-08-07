@@ -80,9 +80,12 @@ def callback():
 def get_host_info(host):
     filepath = f'{host}.txt'
 
-    with open(filepath) as f:
-        js = json.load(f)
-        js = json.loads(js)
+    try:
+        with open(filepath) as f:
+            js = json.load(f)
+            js = json.loads(js)
+    except FileNotFoundError:
+        return "そんなサーバないよ😡 : " + host
 
     return f'ホスト名：{js["hostname"]}\nkernel : {js["kernel"]}\nmem: {js["mem"]}'
 
