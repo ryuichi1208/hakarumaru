@@ -27,7 +27,7 @@ def update_host_info():
     data = request.data.decode('utf-8')
     data = json.loads(data)
 
-    with open("./text") as f:
+    with open("./text", mode='w') as f:
         f.write("hostname")
 
     with open("./text") as f:
