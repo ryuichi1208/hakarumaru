@@ -30,7 +30,7 @@ def update_host_info():
 
     host_info = {
         "hostname": data["host"],
-        "kernal": data["kernel"],
+        "kernel": data["kernel"],
         "mem": data["mem"],
         "instruction": data["instruction"]
     }
