@@ -81,7 +81,7 @@ def get_host_info():
     filepath = "mbp01.txt"
 
     with open(filepath) as f:
-        js = json.load(f)
+        js = json.loads(f)
 
     return f'ホスト名：{js["hostname"]}\nkernel : {js["kernel"]}'
 
