@@ -31,7 +31,7 @@ def update_host_info():
     host_info = {
         "hostname": data["host"],
         "kernal": data["kernel"],
-        "mem": data[mem]
+        "mem": data["mem"]
     }
 
     with open(filepath, mode='w') as f:
