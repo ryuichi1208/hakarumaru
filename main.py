@@ -77,6 +77,13 @@ def callback():
     return 'OK'
 
 
+def get_host_info()
+    filepath = "mbp01.txt"
+
+    with open(filepath) as f:
+        js = json.load(f)
+
+    return f'ホスト名：{js["hostname"]}\nkernel : {js["kernel"]}'
 
 def dispatch_response(msg):
     status = {
