@@ -31,7 +31,8 @@ def update_host_info():
     host_info = {
         "hostname": data["host"],
         "kernal": data["kernel"],
-        "mem": data["mem"]
+        "mem": data["mem"],
+        "instruction": data["instruction"]
     }
 
     with open(filepath, mode='w') as f:
@@ -129,6 +130,8 @@ def dispatch_response(msg):
             res = signal[int(cmd[1])]
         except KeyError:
             res = "The specified signal is undefined"
+    elif cmd[0] in ["の情報"]:
+        res = get_host_info()
     else:
         res = msg
 
