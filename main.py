@@ -138,7 +138,7 @@ def dispatch_response(msg):
             res = signal[int(cmd[1])]
         except KeyError:
             res = "The specified signal is undefined"
-    elif cmd[0] in "の情報":
+    elif "の情報" in cmd[0]:
         res = get_host_info(cmd[0:cmd[0].find("の")])
     else:
         res = msg
