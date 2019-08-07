@@ -4,3 +4,5 @@ requests
 psutil
 SQLAlchemy
 flask-sqlalchemy
+HamlishExtension
+ImmutableDict
