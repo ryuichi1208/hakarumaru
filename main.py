@@ -35,7 +35,8 @@ def update_host_info():
     }
 
     with open(filepath, mode='w') as f:
-        json.dump(host_info, f, ensure_ascii=False)
+        js = json.dumps(host_info)
+        json.dump(js, f, ensure_ascii=False)
 
     with open(filepath) as f:
         return json.load(f)
