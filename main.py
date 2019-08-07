@@ -77,7 +77,7 @@ def callback():
     return 'OK'
 
 
-def get_host_info()
+def get_host_info():
     filepath = "mbp01.txt"
 
     with open(filepath) as f:
