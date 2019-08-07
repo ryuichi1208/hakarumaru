@@ -26,12 +26,19 @@ def is_authorize(user, password):
 def update_host_info():
     data = request.data.decode('utf-8')
     data = json.loads(data)
+    filepath = f'{data["host"]}.txt'
 
-    with open("./text", mode='w') as f:
-        f.write("hostname")
+    host_info = {
+        "hostname": data["host"],
+        "kernal": data["kernel"],
+        "mem": data[mem]
+    }
 
-    with open("./text") as f:
-        return f.read()
+    with open(filepath, mode='w') as f:
+        json.dump(host_info, f, ensure_ascii=False)
+
+    with open(filepath) as f:
+        return json.load(f)
 
 
 @app.route("/cpu", methods=['POST'])
