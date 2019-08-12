@@ -15,10 +15,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
 db = SQLAlchemy(app)
 
 class Entry(db.Model):
-    __tablename__ = "entries"
-    id = db.Column(db.Integer, primary_key=True)
+    __tablename__ = "dzed"
+    _id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(), nullable=False)
     body = db.Column(db.String(), nullable=False)
+    date = db.Column(db.String(), nullable=False)
 
 @app.route('/')
 def hello_world():
