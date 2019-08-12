@@ -1,10 +1,12 @@
 import os
 import json
+import psycopg2
 
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageMessage, AudioMessage
+
 
 app = Flask(__name__)
 
@@ -20,6 +22,15 @@ def is_authorize(user, password):
         return True
     else:
         return False
+
+
+@app.route("/api/db/test", methods=['POST'])
+def db_test():
+    dsn = os.environ.get('DATABASE_URL')
+    conn = psycopg2.connect(dsn)
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM entries')
+    return cur[1]
 
 
 @app.route("/update", methods=['POST'])
