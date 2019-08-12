@@ -32,7 +32,7 @@ def db_test():
     cur.execute('SELECT * FROM entries')
     res = {}
     for i in cur:
-        res[cur[0]] : cur[1]
+        res[i[0]] : i[1]
 
     return res
 
