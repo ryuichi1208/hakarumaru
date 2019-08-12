@@ -32,6 +32,7 @@ def db_test():
     cur.execute('SELECT * FROM dzed')
     res = {}
     for i in cur:
+        print(i[0],i[1])
         res[i[0]] = i[1]
 
     print(res)
