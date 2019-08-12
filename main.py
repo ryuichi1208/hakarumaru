@@ -30,6 +30,8 @@ def db_test():
     conn = psycopg2.connect(dsn)
     cur = conn.cursor()
     cur.execute('SELECT * FROM entries')
+    print(cur)
+    print(type(cur))
     for r in cur:
         return r[1]
 
