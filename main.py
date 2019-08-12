@@ -24,7 +24,7 @@ def is_authorize(user, password):
         return False
 
 
-@app.route("/api/db/test", methods=['POST'])
+@app.route("/api/db/test", methods=['GET'])
 def db_test():
     dsn = os.environ.get('DATABASE_URL')
     conn = psycopg2.connect(dsn)
