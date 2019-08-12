@@ -29,11 +29,12 @@ def db_test():
     dsn = os.environ.get('DATABASE_URL')
     conn = psycopg2.connect(dsn)
     cur = conn.cursor()
-    cur.execute('SELECT * FROM entries')
+    cur.execute('SELECT * FROM dzed')
     res = {}
     for i in cur:
         res[i[0]] : i[1]
 
+    print(res)
     return jsonify(res)
 
 
