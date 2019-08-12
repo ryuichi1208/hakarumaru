@@ -30,10 +30,11 @@ def db_test():
     conn = psycopg2.connect(dsn)
     cur = conn.cursor()
     cur.execute('SELECT * FROM entries')
-    print(cur)
-    print(type(cur))
-    for r in cur:
-        return r[1]
+    res = {}
+    for i in cur:
+        res[cur[0]] : cur[1]
+
+    return res
 
 
 @app.route("/update", methods=['POST'])
