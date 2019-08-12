@@ -34,7 +34,7 @@ def db_test():
     for i in cur:
         res[i[0]] : i[1]
 
-    return res
+    return jsonify(res)
 
 
 @app.route("/update", methods=['POST'])
