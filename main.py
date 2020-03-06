@@ -10,10 +10,6 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageMess
 
 app = Flask(__name__)
 
-user_id = "Ueb00df84c77cf0167b07fe0682eb709c"
-YOUR_CHANNEL_SECRET = "610989f0eb3dd983010087a2bbc4b7ea"
-YOUR_CHANNEL_ACCESS_TOKEN = "YNvQUWGAzSTIIMzyPgkBIaktnNZQgR4YkvUBZGFQIjWcSAFu8acgj94ePqeJGCN1isSyyc0QKCbYEx2gN50TLf+ordWojC+XT4gZyyXSWVxoObh9WSiioLbpgg6JWyxyLYgJXXQ8rEXacb3hpOXW0AdB04t89/1O/w1cDnyilFU="
-
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
